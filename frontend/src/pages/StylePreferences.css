@@ -1,0 +1,158 @@
+.preferences-page {
+  min-height: 100vh;
+  background: #f7f4ef;
+  color: #1c1c1c;
+  font-family: Arial, sans-serif;
+}
+
+.preferences-header {
+  height: 80px;
+  padding: 0 7%;
+  border-bottom: 1px solid #ddd6cc;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.preferences-logo {
+  font-size: 25px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.preferences-logo span {
+  font-weight: normal;
+}
+
+.step-indicator {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #777;
+}
+
+.preferences-container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 80px 30px;
+}
+
+.preferences-intro {
+  max-width: 650px;
+  margin-bottom: 70px;
+}
+
+.preferences-tag {
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: bold;
+  color: #777;
+}
+
+.preferences-intro h1 {
+  font-family: Georgia, serif;
+  font-size: 65px;
+  font-weight: normal;
+  line-height: 1;
+  margin: 20px 0;
+}
+
+.preferences-intro h1 em {
+  font-style: italic;
+}
+
+.preferences-intro > p:last-child {
+  color: #777;
+  line-height: 1.7;
+}
+
+.preference-section {
+  padding: 40px 0;
+  border-top: 1px solid #d8d1c7;
+}
+
+.preference-section h2 {
+  font-family: Georgia, serif;
+  font-size: 30px;
+  font-weight: normal;
+  margin: 0 0 8px;
+}
+
+.preference-section > p {
+  color: #777;
+  margin-bottom: 25px;
+}
+
+.option-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.preference-option {
+  padding: 14px 24px;
+
+  border: 1px solid #c9c1b6;
+  border-radius: 30px;
+
+  background: white;
+
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.preference-option:hover {
+  border-color: #1c1c1c;
+}
+
+.preference-option.selected {
+  background: #1c1c1c;
+  color: white;
+  border-color: #1c1c1c;
+}
+
+.preferences-submit {
+  padding: 50px 0 80px;
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+.preferences-button {
+  padding: 16px 28px;
+
+  background: #1c1c1c;
+  color: white;
+
+  border: none;
+  border-radius: 30px;
+
+  font-size: 14px;
+
+  cursor: pointer;
+}
+
+.preferences-button:hover {
+  opacity: 0.85;
+}
+
+@media (max-width: 700px) {
+
+  .preferences-container {
+    padding: 50px 20px;
+  }
+
+  .preferences-intro h1 {
+    font-size: 48px;
+  }
+
+  .preferences-submit {
+    justify-content: stretch;
+  }
+
+  .preferences-button {
+    width: 100%;
+  }
+
+}

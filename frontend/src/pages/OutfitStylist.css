@@ -1,0 +1,148 @@
+.stylist-page {
+  min-height: 100vh;
+  background: #f7f4ef;
+  color: #1c1c1c;
+  font-family: Arial, sans-serif;
+}
+
+/* NAVBAR */
+
+.stylist-navbar {
+  height: 85px;
+  padding: 0 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd6cc;
+}
+
+.stylist-logo {
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.back-button {
+  border: none;
+  background: none;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* HEADER */
+
+.stylist-header {
+  text-align: center;
+  padding: 70px 20px 45px;
+}
+
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: #777;
+}
+
+.stylist-header h1 {
+  font-size: 48px;
+  margin: 15px 0;
+}
+
+.stylist-header h1 em {
+  font-family: Georgia, serif;
+  font-weight: normal;
+}
+
+.stylist-header p:last-child {
+  color: #666;
+  font-size: 17px;
+}
+
+/* FORM */
+
+.stylist-form {
+  width: 85%;
+  max-width: 950px;
+  margin: auto;
+  padding-bottom: 80px;
+}
+
+.stylist-section {
+  margin-bottom: 50px;
+}
+
+.stylist-section h2 {
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+/* OPTIONS */
+
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.option-card {
+  min-height: 75px;
+  background: white;
+  border: 1px solid #ddd6cc;
+  border-radius: 14px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.option-card span {
+  display: block;
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
+.option-card:hover {
+  background: #1c1c1c;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.option-card.selected {
+  background: #1c1c1c;
+  color: white;
+  border-color: #1c1c1c;
+  transform: translateY(-2px);
+}
+/* GENERATE */
+
+.generate-button {
+  display: block;
+  margin: 20px auto;
+  padding: 18px 40px;
+  border: none;
+  border-radius: 40px;
+  background: #1c1c1c;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.generate-button:hover {
+  opacity: 0.85;
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+  .stylist-header h1 {
+    font-size: 35px;
+  }
+
+  .option-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stylist-form {
+    width: 90%;
+  }
+}

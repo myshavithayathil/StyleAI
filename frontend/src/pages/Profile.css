@@ -1,0 +1,301 @@
+.profile-page {
+  min-height: 100vh;
+  background: #f7f4ef;
+  color: #1c1c1c;
+}
+
+
+/* HEADER */
+
+.profile-header {
+  height: 80px;
+  padding: 0 7%;
+  border-bottom: 1px solid #ddd6cc;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile-logo {
+  font-size: 25px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.profile-logo span {
+  font-weight: normal;
+}
+
+.step-indicator {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #777;
+}
+
+
+/* CONTAINER */
+
+.profile-container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 80px 30px;
+}
+
+
+/* INTRO */
+
+.profile-intro {
+  max-width: 650px;
+  margin-bottom: 70px;
+}
+
+.profile-tag {
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: bold;
+}
+
+.profile-intro h1 {
+  font-family: Georgia, serif;
+  font-size: 65px;
+  font-weight: normal;
+  line-height: 1;
+  margin: 20px 0;
+}
+
+.profile-intro h1 em {
+  font-style: italic;
+}
+
+.profile-description {
+  color: #777;
+  line-height: 1.7;
+  max-width: 550px;
+}
+
+
+/* FORM */
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-section {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  padding: 45px 0;
+  border-top: 1px solid #d8d1c7;
+}
+
+.section-number {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #888;
+}
+
+.section-content h2 {
+  font-size: 25px;
+  margin: 0 0 8px;
+}
+
+.section-content > p {
+  color: #777;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+
+/* INPUTS */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group.full {
+  grid-column: span 2;
+}
+
+.input-group label {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.input-group input {
+  padding: 15px;
+  border: 1px solid #ccc4b9;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 15px;
+  outline: none;
+}
+
+.input-group input:focus {
+  border-color: #1c1c1c;
+}
+
+
+/* MEASUREMENT NOTE */
+
+.measurement-note {
+  padding: 15px;
+  margin-bottom: 25px;
+  background: #ebe5dc;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #666;
+}
+
+
+/* STYLE OPTIONS */
+
+.style-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.style-option {
+  padding: 13px 22px;
+  border-radius: 30px;
+  border: 1px solid #c9c1b6;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.style-option:hover {
+  border-color: #1c1c1c;
+}
+
+.style-option.selected {
+  background: #1c1c1c;
+  color: white;
+  border-color: #1c1c1c;
+}
+
+
+/* PHOTO */
+
+.photo-upload {
+  border: 2px dashed #c7bfb4;
+  border-radius: 12px;
+  padding: 50px 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  cursor: pointer;
+
+  background: #faf8f4;
+}
+
+.photo-upload:hover {
+  border-color: #1c1c1c;
+}
+
+.photo-upload input {
+  display: none;
+}
+
+.upload-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #e7e0d6;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+
+.photo-upload strong {
+  margin-bottom: 8px;
+}
+
+.photo-upload small {
+  color: #888;
+}
+
+.file-name {
+  margin-top: 15px;
+  color: #333 !important;
+}
+
+
+/* SUBMIT */
+
+.form-submit {
+  padding: 40px 0 80px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.continue-button {
+  padding: 16px 28px;
+  background: #1c1c1c;
+  color: white;
+
+  border: none;
+  border-radius: 30px;
+
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.continue-button:hover {
+  opacity: 0.85;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+  .profile-container {
+    padding: 50px 20px;
+  }
+
+  .profile-intro h1 {
+    font-size: 48px;
+  }
+
+  .form-section {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .input-group.full {
+    grid-column: span 1;
+  }
+
+  .form-submit {
+    justify-content: stretch;
+  }
+
+  .continue-button {
+    width: 100%;
+  }
+
+}

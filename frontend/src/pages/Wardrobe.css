@@ -1,0 +1,325 @@
+.wardrobe-page {
+  min-height: 100vh;
+  background: #f7f4ef;
+  color: #171717;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* NAVBAR */
+
+.wardrobe-nav {
+  height: 80px;
+  padding: 0 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd6cc;
+}
+
+.wardrobe-logo {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.wardrobe-logo span {
+  font-weight: 400;
+}
+
+.wardrobe-nav button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+/* HEADER */
+
+.wardrobe-header {
+  width: 88%;
+  max-width: 1250px;
+  margin: 60px auto 45px;
+}
+
+.wardrobe-tag {
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: #777;
+}
+
+.wardrobe-header h1 {
+  font-size: 58px;
+  line-height: 1.05;
+  margin: 15px 0 25px;
+}
+
+.wardrobe-header h1 em {
+  font-family: Georgia, serif;
+  font-weight: 400;
+}
+
+.wardrobe-header > p:last-child {
+  color: #666;
+  font-size: 17px;
+}
+
+
+/* ADD SECTION */
+
+.add-clothing-section {
+  width: 88%;
+  max-width: 1250px;
+  margin: auto;
+}
+
+.add-clothing-card {
+  background: white;
+  border: 1px solid #ddd6cc;
+  border-radius: 25px;
+  padding: 40px;
+}
+
+.add-clothing-card h2 {
+  font-size: 15px;
+  letter-spacing: 4px;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+
+/* FORM */
+
+.wardrobe-form-group {
+  margin-bottom: 22px;
+}
+
+.wardrobe-form-group label {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #777;
+  margin-bottom: 9px;
+}
+
+.wardrobe-form-group input,
+.wardrobe-form-group select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px;
+  border: 1px solid #d8d2ca;
+  border-radius: 8px;
+  background: #faf9f7;
+  font-size: 15px;
+}
+
+.wardrobe-form-group input:focus,
+.wardrobe-form-group select:focus {
+  outline: none;
+  border-color: #222;
+}
+
+
+/* IMAGE PREVIEW */
+
+.clothing-preview {
+  width: 180px;
+  height: 180px;
+  margin: 20px 0;
+  border-radius: 15px;
+  overflow: hidden;
+  background: #eee8df;
+}
+
+.clothing-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* ADD BUTTON */
+
+.add-clothing-button {
+  margin-top: 10px;
+  padding: 16px 28px;
+  border: none;
+  border-radius: 30px;
+  background: #1c1c1c;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.add-clothing-button:hover {
+  background: #444;
+}
+
+
+/* WARDROBE COLLECTION */
+
+.wardrobe-section {
+  width: 88%;
+  max-width: 1250px;
+  margin: 70px auto 100px;
+}
+
+.wardrobe-section-title p {
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #777;
+}
+
+.wardrobe-section-title h2 {
+  font-size: 32px;
+  margin-top: 5px;
+}
+
+
+/* FILTERS */
+
+.wardrobe-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 25px 0 35px;
+}
+
+.wardrobe-filter-btn {
+  padding: 10px 22px;
+  border: 1px solid #c9c1b6;
+  border-radius: 30px;
+  background: white;
+  color: #1c1c1c;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.wardrobe-filter-btn:hover {
+  border-color: #1c1c1c;
+}
+
+.wardrobe-filter-btn.active {
+  background: #1c1c1c;
+  color: white;
+  border-color: #1c1c1c;
+}
+
+
+/* EMPTY */
+
+.empty-wardrobe {
+  margin-top: 30px;
+  padding: 70px 30px;
+  background: #ebe4da;
+  border-radius: 25px;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 45px;
+}
+
+.empty-wardrobe h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.empty-wardrobe p {
+  color: #777;
+}
+
+
+/* GRID */
+
+.wardrobe-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+
+/* CARD */
+
+.clothing-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid #ddd6cc;
+}
+
+.clothing-image {
+  width: 100%;
+  height: 280px;
+  background: #ebe4da;
+}
+
+.clothing-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.clothing-info {
+  padding: 20px;
+}
+
+.clothing-category {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #888;
+  text-transform: uppercase;
+}
+
+.clothing-info h3 {
+  margin: 8px 0 10px;
+  font-size: 18px;
+}
+
+.clothing-color {
+  font-size: 13px;
+  color: #666;
+  margin: 0 0 14px;
+}
+
+.clothing-info button {
+  border: none;
+  background: none;
+  color: #888;
+  cursor: pointer;
+  padding: 0;
+}
+
+.clothing-info button:hover {
+  color: #111;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+  .wardrobe-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .wardrobe-header h1 {
+    font-size: 42px;
+  }
+
+  .wardrobe-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .add-clothing-card {
+    padding: 25px;
+  }
+
+}
