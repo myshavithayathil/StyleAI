@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Header from "../components/Header";
 import "./StylePreferences.css";
 
 function StylePreferences() {
@@ -80,22 +81,11 @@ function StylePreferences() {
 
     <div className="preferences-page">
 
-      <header className="preferences-header">
-
-        <div
-          className="preferences-logo"
-          onClick={() => {
-            window.location.href = "/";
-          }}
-        >
-          STYLE<span>AI</span>
-        </div>
-
-        <div className="step-indicator">
-          STEP 02 / 03
-        </div>
-
-      </header>
+      <Header
+        logoRoute="/"
+        variant="step"
+        stepText="STEP 02 / 03"
+      />
 
 
       <main className="preferences-container">

@@ -2,12 +2,14 @@
   min-height: 100vh;
   background: #f7f4ef;
   color: #1c1c1c;
+  font-family: var(--font-sans, "DM Sans", Arial, sans-serif);
 }
 
 
 /* HEADER */
 
-.profile-header {
+.profile-header,
+.profile-nav {
   height: 80px;
   padding: 0 7%;
   border-bottom: 1px solid #ddd6cc;
@@ -15,6 +17,19 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.profile-nav button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  color: #1c1c1c;
+  font-family: inherit;
+}
+
+.profile-nav button:hover {
+  opacity: 0.7;
 }
 
 .profile-logo {
@@ -69,7 +84,8 @@
   font-style: italic;
 }
 
-.profile-description {
+.profile-description,
+.profile-intro p {
   color: #777;
   line-height: 1.7;
   max-width: 550px;
@@ -81,36 +97,110 @@
 .profile-form {
   display: flex;
   flex-direction: column;
+  gap: 24px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
 
-.form-section {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  padding: 45px 0;
-  border-top: 1px solid #d8d1c7;
+.form-group {
+  display: flex;
+  flex-direction: column;
 }
 
-.section-number {
-  font-size: 12px;
+.form-group label {
+  display: block;
+  font-size: 11px;
   letter-spacing: 2px;
-  color: #888;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 8px;
 }
 
-.section-content h2 {
-  font-size: 25px;
-  margin: 0 0 8px;
+.form-group input,
+.form-group select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 16px;
+  border: 1px solid #d8d1c7;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 15px;
+  font-family: inherit;
+  color: #1c1c1c;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.section-content > p {
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #1c1c1c;
+  box-shadow: 0 0 0 1px #1c1c1c;
+}
+
+.form-group input::placeholder {
+  color: #a8a29a;
+}
+
+.photo-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.photo-section label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.photo-section p {
   color: #777;
-  margin-bottom: 30px;
+  font-size: 14px;
+  margin-bottom: 10px;
   line-height: 1.5;
 }
 
+.photo-section input[type="file"] {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 16px;
+  border: 1px dashed #d8d1c7;
+  border-radius: 8px;
+  background: #faf8f4;
+  font-size: 14px;
+  font-family: inherit;
+  color: #555;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
 
-/* INPUTS */
+.photo-section input[type="file"]:hover {
+  border-color: #1c1c1c;
+}
 
+.photo-preview {
+  margin-top: 15px;
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #d8d1c7;
+}
+
+.photo-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Fallback for form-grid / input-group */
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -128,21 +218,28 @@
 }
 
 .input-group label {
-  font-size: 12px;
+  font-size: 11px;
+  letter-spacing: 2px;
   font-weight: 600;
+  color: #555;
+  margin-bottom: 8px;
 }
 
 .input-group input {
-  padding: 15px;
-  border: 1px solid #ccc4b9;
+  padding: 14px 16px;
+  border: 1px solid #d8d1c7;
   border-radius: 8px;
   background: #fff;
   font-size: 15px;
+  font-family: inherit;
+  color: #1c1c1c;
   outline: none;
+  transition: border-color 0.2s ease;
 }
 
 .input-group input:focus {
   border-color: #1c1c1c;
+  box-shadow: 0 0 0 1px #1c1c1c;
 }
 
 
@@ -282,8 +379,10 @@
     gap: 20px;
   }
 
-  .form-grid {
+  .form-grid,
+  .form-row {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .input-group.full {

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Header from "../components/Header";
 import "./Avatar.css";
 
 function Avatar() {
@@ -19,28 +20,11 @@ function Avatar() {
 
     <div className="avatar-page">
 
-      {/* NAVBAR */}
-
-      <nav className="avatar-nav">
-
-        <div
-          className="avatar-logo"
-          onClick={() => {
-            window.location.href = "/dashboard";
-          }}
-        >
-          STYLE<span>AI</span>
-        </div>
-
-        <button
-          onClick={() => {
-            window.location.href = "/dashboard";
-          }}
-        >
-          ← Dashboard
-        </button>
-
-      </nav>
+      <Header
+        logoRoute="/dashboard"
+        buttonText="← Dashboard"
+        buttonRoute="/dashboard"
+      />
 
 
       {/* HEADER */}

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Header from "../components/Header";
 import "./OutfitResult.css";
 
 function OutfitResult() {
@@ -150,7 +151,7 @@ function OutfitResult() {
     savedOutfits.push(newOutfit);
     localStorage.setItem("savedOutfits", JSON.stringify(savedOutfits));
     setSaved(true);
-    alert("Outfit saved successfully! ❤️");
+    alert("Outfit saved successfully!");
   };
 
 
@@ -177,23 +178,11 @@ function OutfitResult() {
           NAVBAR
       ====================================== */}
 
-      <nav className="result-navbar">
-
-        <div
-          className="result-logo"
-          onClick={() => {
-            window.location.href = "/";
-          }}
-        >
-          STYLE<span>AI</span>
-        </div>
-
-
-        <button onClick={goToDashboard}>
-          Dashboard
-        </button>
-
-      </nav>
+      <Header
+        logoRoute="/dashboard"
+        buttonText="Dashboard"
+        onButtonClick={goToDashboard}
+      />
 
 
 
@@ -239,84 +228,12 @@ function OutfitResult() {
 
       <main className="result-container">
 
-
-        {/* TOP */}
-
-        {(() => {
-          const top = getItemDetails(outfit.top);
-          return (
-            <div className="outfit-card">
-              <div className="outfit-icon">
-                👕
-              </div>
-              <h2>
-                TOP
-              </h2>
-              {top.image && (
-                <div className="outfit-card-image">
-                  <img src={top.image} alt={top.name} />
-                </div>
-              )}
-              <h3>
-                {top.name || "No top selected"}
-              </h3>
-              {top.color && (
-                <p className="outfit-card-color">
-                  <strong>Color:</strong> {top.color}
-                </p>
-              )}
-              <p>
-                A versatile choice selected for your occasion and personal style.
-              </p>
-            </div>
-          );
-        })()}
-
-
-
-        {/* BOTTOM */}
-
-        {(() => {
-          const bottom = getItemDetails(outfit.bottom);
-          return (
-            <div className="outfit-card">
-              <div className="outfit-icon">
-                👖
-              </div>
-              <h2>
-                BOTTOM
-              </h2>
-              {bottom.image && (
-                <div className="outfit-card-image">
-                  <img src={bottom.image} alt={bottom.name} />
-                </div>
-              )}
-              <h3>
-                {bottom.name || "No bottom selected"}
-              </h3>
-              {bottom.color && (
-                <p className="outfit-card-color">
-                  <strong>Color:</strong> {bottom.color}
-                </p>
-              )}
-              <p>
-                Designed to balance the overall silhouette of your outfit.
-              </p>
-            </div>
-          );
-        })()}
-
-
-
         {/* DRESS (if present) */}
-
         {outfit.dress && (() => {
           const dress = getItemDetails(outfit.dress);
+          if (!dress.name) return null;
           return (
             <div className="outfit-card">
-              <div className="outfit-icon">
-                👗
-              </div>
               <h2>
                 DRESS
               </h2>
@@ -340,17 +257,70 @@ function OutfitResult() {
           );
         })()}
 
-
-
-        {/* SHOES / FOOTWEAR */}
-
-        {(() => {
-          const shoes = getItemDetails(outfit.shoes || outfit.footwear);
+        {/* TOP */}
+        {outfit.top && (() => {
+          const top = getItemDetails(outfit.top);
+          if (!top.name) return null;
           return (
             <div className="outfit-card">
-              <div className="outfit-icon">
-                👟
-              </div>
+              <h2>
+                TOP
+              </h2>
+              {top.image && (
+                <div className="outfit-card-image">
+                  <img src={top.image} alt={top.name} />
+                </div>
+              )}
+              <h3>
+                {top.name}
+              </h3>
+              {top.color && (
+                <p className="outfit-card-color">
+                  <strong>Color:</strong> {top.color}
+                </p>
+              )}
+              <p>
+                A versatile choice selected for your occasion and personal style.
+              </p>
+            </div>
+          );
+        })()}
+
+        {/* BOTTOM */}
+        {outfit.bottom && (() => {
+          const bottom = getItemDetails(outfit.bottom);
+          if (!bottom.name) return null;
+          return (
+            <div className="outfit-card">
+              <h2>
+                BOTTOM
+              </h2>
+              {bottom.image && (
+                <div className="outfit-card-image">
+                  <img src={bottom.image} alt={bottom.name} />
+                </div>
+              )}
+              <h3>
+                {bottom.name}
+              </h3>
+              {bottom.color && (
+                <p className="outfit-card-color">
+                  <strong>Color:</strong> {bottom.color}
+                </p>
+              )}
+              <p>
+                Designed to balance the overall silhouette of your outfit.
+              </p>
+            </div>
+          );
+        })()}
+
+        {/* SHOES / FOOTWEAR */}
+        {(outfit.shoes || outfit.footwear) && (() => {
+          const shoes = getItemDetails(outfit.shoes || outfit.footwear);
+          if (!shoes.name) return null;
+          return (
+            <div className="outfit-card">
               <h2>
                 SHOES
               </h2>
@@ -360,7 +330,7 @@ function OutfitResult() {
                 </div>
               )}
               <h3>
-                {shoes.name || "No shoes selected"}
+                {shoes.name}
               </h3>
               {shoes.color && (
                 <p className="outfit-card-color">
@@ -374,17 +344,12 @@ function OutfitResult() {
           );
         })()}
 
-
-
         {/* ACCESSORY */}
-
-        {(() => {
+        {outfit.accessory && (() => {
           const acc = getItemDetails(outfit.accessory);
+          if (!acc.name) return null;
           return (
             <div className="outfit-card">
-              <div className="outfit-icon">
-                ✨
-              </div>
               <h2>
                 ACCESSORY
               </h2>
@@ -394,7 +359,7 @@ function OutfitResult() {
                 </div>
               )}
               <h3>
-                {acc.name || "No accessory selected"}
+                {acc.name}
               </h3>
               {acc.color && (
                 <p className="outfit-card-color">
@@ -402,13 +367,23 @@ function OutfitResult() {
                 </p>
               )}
               <p>
-                {acc.name
-                  ? "A curated finishing touch to complete your STYLEAI recommendation."
-                  : "Add accessories to your wardrobe for a complete look."}
+                A curated finishing touch to complete your STYLEAI recommendation.
               </p>
             </div>
           );
         })()}
+
+        {/* FALLBACK IF NO ITEMS */}
+        {!getItemDetails(outfit.dress).name &&
+         !getItemDetails(outfit.top).name &&
+         !getItemDetails(outfit.bottom).name &&
+         !getItemDetails(outfit.shoes || outfit.footwear).name &&
+         !getItemDetails(outfit.accessory).name && (
+          <div className="outfit-card">
+            <h2>WARDROBE</h2>
+            <p>No suitable items found in your wardrobe for this occasion.</p>
+          </div>
+        )}
 
       </main>
 
@@ -454,111 +429,69 @@ function OutfitResult() {
 
 
           {(() => {
-
             const result = JSON.parse(
               localStorage.getItem("outfitResult") || "{}"
             );
 
-            const personalization =
-              result.personalization || {};
-
+            const p = personalization && Object.keys(personalization).length > 0 && (personalization.body_note || personalization.color_note || personalization.styling_advice)
+              ? personalization
+              : (result.personalization || {});
 
             return (
-
               <div>
-
+                {/* STYLING ADVICE */}
+                {p.styling_advice && (
+                  <p>
+                    <strong>Styling Advice:</strong>{" "}
+                    {p.styling_advice}
+                  </p>
+                )}
 
                 {/* BODY TYPE */}
-
-                {personalization.body_note && (
-
+                {p.body_note && (
                   <p>
-
-                    <strong>
-                      Body Type:
-                    </strong>{" "}
-
-                    {personalization.body_note}
-
+                    <strong>Body Type:</strong>{" "}
+                    {p.body_note}
                   </p>
-
                 )}
-
-
 
                 {/* COLOURS */}
-
-                {personalization.color_note && (
-
+                {p.color_note && (
                   <p>
-
-                    <strong>
-                      Colours:
-                    </strong>{" "}
-
-                    {personalization.color_note}
-
+                    <strong>Colours:</strong>{" "}
+                    {p.color_note}
                   </p>
-
                 )}
-
-
 
                 {/* WARDROBE */}
-
-                {personalization.wardrobe_items !== undefined && (
-
+                {p.wardrobe_items !== undefined && (
                   <p>
-
-                    <strong>
-                      Wardrobe:
-                    </strong>{" "}
-
-                    {personalization.wardrobe_items}
-                    {" "}item(s) available.
-
+                    <strong>Wardrobe:</strong>{" "}
+                    {p.wardrobe_items} item(s) available.
                   </p>
-
                 )}
-
-
 
                 {/* FIT */}
-
-                {personalization.preferred_fit && (
-
+                {p.preferred_fit && (
                   <p>
-
-                    <strong>
-                      Preferred Fit:
-                    </strong>{" "}
-
-                    {personalization.preferred_fit}
-
+                    <strong>Preferred Fit:</strong>{" "}
+                    {p.preferred_fit}
                   </p>
-
                 )}
 
-
-
                 {/* FALLBACK */}
-
-                {!personalization.body_note &&
-                 !personalization.color_note &&
-                 personalization.wardrobe_items === undefined &&
-                 !personalization.preferred_fit && (
-
+                {!p.styling_advice &&
+                 !p.body_note &&
+                 !p.color_note &&
+                 p.wardrobe_items === undefined &&
+                 !p.preferred_fit && (
                   <p>
                     Your outfit is based on your
                     selected occasion, weather and style.
                   </p>
-
                 )}
-
               </div>
-
             );
-
           })()}
 
         </div>
@@ -582,8 +515,8 @@ function OutfitResult() {
         >
 
           {saved
-            ? "✓ Outfit Saved"
-            : "♡ Save Outfit"}
+            ? "Outfit Saved"
+            : "Save Outfit"}
 
         </button>
 

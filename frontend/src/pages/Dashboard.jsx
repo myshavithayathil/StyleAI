@@ -1,3 +1,4 @@
+import Header from "../components/Header";
 import "./Dashboard.css";
 
 function Dashboard() {
@@ -16,32 +17,11 @@ function Dashboard() {
   return (
     <div className="dashboard">
 
-
-      {/* =========================================
-          NAVBAR
-      ========================================= */}
-
-      <nav className="dashboard-nav">
-
-        <div
-          className="dashboard-logo"
-          onClick={() => {
-            window.location.href = "/";
-          }}
-        >
-          STYLE<span>AI</span>
-        </div>
-
-
-        <button
-          onClick={() => {
-            window.location.href = "/profile";
-          }}
-        >
-          Profile
-        </button>
-
-      </nav>
+      <Header
+        logoRoute="/"
+        buttonText="Profile"
+        buttonRoute="/profile"
+      />
 
 
 
@@ -92,11 +72,6 @@ function Dashboard() {
 
           <div className="dashboard-card">
 
-            <div className="card-icon">
-              👤
-            </div>
-
-
             <h2>
               Your Avatar
             </h2>
@@ -125,11 +100,6 @@ function Dashboard() {
           ===================================== */}
 
           <div className="dashboard-card">
-
-            <div className="card-icon">
-              👕
-            </div>
-
 
             <h2>
               Your Wardrobe
@@ -160,11 +130,6 @@ function Dashboard() {
 
           <div className="dashboard-card">
 
-            <div className="card-icon">
-              ✨
-            </div>
-
-
             <h2>
               Generate Outfit
             </h2>
@@ -193,11 +158,6 @@ function Dashboard() {
           ===================================== */}
 
           <div className="dashboard-card">
-
-            <div className="card-icon">
-              ♡
-            </div>
-
 
             <h2>
               Saved Looks
@@ -231,113 +191,77 @@ function Dashboard() {
 
         <section className="style-profile">
 
-
-          <p>
+          <p className="style-profile-tag">
             YOUR STYLE PROFILE
           </p>
-
 
           <h2>
             What we know about your style
           </h2>
 
-
-
           <div className="profile-details">
 
-
             {/* STYLE */}
-
-            <div>
-
+            <div className="profile-detail-card">
               <span>
                 STYLE
               </span>
-
-
               <strong>
                 {preferences.styles?.length
                   ? preferences.styles.join(", ")
                   : "Not selected"}
               </strong>
-
             </div>
 
-
-
             {/* FIT */}
-
-            <div>
-
+            <div className="profile-detail-card">
               <span>
                 FIT
               </span>
-
-
               <strong>
                 {preferences.fit || "Not selected"}
               </strong>
-
             </div>
 
-
-
             {/* COLOURS */}
-
-            <div>
-
+            <div className="profile-detail-card">
               <span>
                 COLOURS
               </span>
-
-
               <strong>
                 {preferences.colors?.length
                   ? preferences.colors.join(", ")
                   : "Not selected"}
               </strong>
-
             </div>
 
-
-
             {/* OCCASIONS */}
-
-            <div>
-
+            <div className="profile-detail-card">
               <span>
                 OCCASIONS
               </span>
-
-
               <strong>
                 {preferences.occasions?.length
                   ? preferences.occasions.join(", ")
                   : "Not selected"}
               </strong>
-
             </div>
-
 
           </div>
 
-
-
           {/* EDIT PREFERENCES */}
-
-          <button
-            className="edit-preferences"
-            onClick={() => {
-              window.location.href = "/preferences";
-            }}
-          >
-            Edit Style Preferences →
-          </button>
-
+          <div className="edit-preferences-wrapper">
+            <button
+              className="edit-preferences-btn"
+              onClick={() => {
+                window.location.href = "/preferences";
+              }}
+            >
+              Edit Style Preferences →
+            </button>
+          </div>
 
         </section>
-
-
 
         {/* =========================================
             QUICK ACTIONS
@@ -345,64 +269,53 @@ function Dashboard() {
 
         <section className="quick-actions">
 
-
-          <p>
+          <p className="quick-actions-tag">
             QUICK ACTIONS
           </p>
 
-
           <div className="quick-action-buttons">
 
-
             {/* ADD CLOTHES */}
-
             <button
+              className="quick-action-btn quick-action-secondary"
               onClick={() => {
                 window.location.href = "/wardrobe";
               }}
             >
-              👕 Add Clothes
+              Add Clothes
             </button>
 
-
-
             {/* GENERATE OUTFIT */}
-
             <button
+              className="quick-action-btn quick-action-primary"
               onClick={() => {
                 window.location.href = "/outfit";
               }}
             >
-              ✨ Generate Outfit
+              Generate Outfit
             </button>
 
-
-
             {/* VIEW AVATAR */}
-
             <button
+              className="quick-action-btn quick-action-secondary"
               onClick={() => {
                 window.location.href = "/avatar";
               }}
             >
-              👤 View Avatar
+              View Avatar
             </button>
 
-
-
             {/* SAVED LOOKS */}
-
             <button
+              className="quick-action-btn quick-action-secondary"
               onClick={() => {
                 window.location.href = "/saved-outfits";
               }}
             >
-              ♡ Saved Looks
+              Saved Looks
             </button>
 
-
           </div>
-
 
         </section>
 

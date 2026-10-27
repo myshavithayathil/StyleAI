@@ -1,0 +1,119 @@
+/* ==========================================================================
+   SHARED HEADER COMPONENT STYLING
+   ========================================================================== */
+
+.app-header {
+  height: 80px;
+  padding: 0 7%;
+  border-bottom: 1px solid #ddd6cc;
+  background: #f7f4ef;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.app-header.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.app-header .app-logo {
+  font-family: var(--font-sans, "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif);
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #1c1c1c;
+  cursor: pointer;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  line-height: 1;
+  transition: opacity 0.2s ease;
+}
+
+.app-header .app-logo:hover {
+  opacity: 0.85;
+}
+
+.app-header .app-logo span {
+  font-family: var(--font-sans, "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif);
+  font-weight: 400;
+  font-size: 25px;
+  letter-spacing: 2px;
+  margin-left: 1px;
+}
+
+/* Home navigation links */
+.app-header .home-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.app-header .home-nav-links a {
+  text-decoration: none;
+  color: #333333;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: var(--font-sans, "DM Sans", Arial, sans-serif);
+  transition: color 0.2s ease;
+}
+
+.app-header .home-nav-links a:hover {
+  color: #111111;
+}
+
+/* Step indicator */
+.app-header .step-indicator {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #77716a;
+  font-weight: 700;
+  font-family: var(--font-sans, "DM Sans", Arial, sans-serif);
+  text-transform: uppercase;
+}
+
+/* Navigation button (Profile / Dashboard / Back) */
+.app-header .header-nav-btn {
+  padding: 10px 20px;
+  border: 1px solid #ccc4b9;
+  border-radius: 20px;
+  background: transparent;
+  color: #1c1c1c;
+  font-family: var(--font-sans, "DM Sans", Arial, sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.app-header .header-nav-btn:hover {
+  background: #ede6dc;
+  border-color: #1c1c1c;
+  color: #1c1c1c;
+}
+
+@media (max-width: 600px) {
+  .app-header {
+    padding: 0 5%;
+    height: 70px;
+  }
+
+  .app-header .app-logo,
+  .app-header .app-logo span {
+    font-size: 22px;
+  }
+
+  .app-header .home-nav-links {
+    gap: 15px;
+  }
+
+  .app-header .home-nav-links a {
+    display: none;
+  }
+}

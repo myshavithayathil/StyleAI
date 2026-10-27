@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Header from "../components/Header";
 import "./Wardrobe.css";
 
 function Wardrobe() {
@@ -150,29 +151,11 @@ function Wardrobe() {
 
     <div className="wardrobe-page">
 
-
-      {/* NAVBAR */}
-
-      <nav className="wardrobe-nav">
-
-        <div
-          className="wardrobe-logo"
-          onClick={() => {
-            window.location.href = "/dashboard";
-          }}
-        >
-          STYLE<span>AI</span>
-        </div>
-
-        <button
-          onClick={() => {
-            window.location.href = "/dashboard";
-          }}
-        >
-          ← Dashboard
-        </button>
-
-      </nav>
+      <Header
+        logoRoute="/dashboard"
+        buttonText="← Dashboard"
+        buttonRoute="/dashboard"
+      />
 
 
       {/* HEADER */}
@@ -463,10 +446,6 @@ function Wardrobe() {
 
           <div className="empty-wardrobe">
 
-            <div className="empty-icon">
-              👕
-            </div>
-
             <h3>
               Your wardrobe is empty
             </h3>
@@ -481,10 +460,6 @@ function Wardrobe() {
         ) : filteredWardrobe.length === 0 ? (
 
           <div className="empty-wardrobe">
-
-            <div className="empty-icon">
-              {selectedFilter === "Accessories" ? "✨" : "👕"}
-            </div>
 
             <h3>
               No {selectedFilter.toLowerCase()} found

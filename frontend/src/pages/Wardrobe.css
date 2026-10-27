@@ -113,6 +113,8 @@
   border-radius: 8px;
   background: #faf9f7;
   font-size: 15px;
+  font-family: inherit;
+  color: #1c1c1c;
 }
 
 .wardrobe-form-group input:focus,

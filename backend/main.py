@@ -1,6 +1,7 @@
 import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from recommendation import recommend_from_wardrobe
 
 app = FastAPI(title="STYLEAI Backend")
 
@@ -60,199 +61,73 @@ def recommend_outfit(data: dict):
     preferred_fit = preferences.get("fit", "")
 
     # --------------------------------------------------
-    # WARDROBE CATEGORIZATION
+    # OCCASION-AWARE WARDROBE RECOMMENDATION
     # --------------------------------------------------
 
-    tops = []
-    bottoms = []
-    shoes = []
-    accessories = []
-
-    for item in wardrobe:
-
-        if isinstance(item, str):
-            item_name = item
-            category = ""
-        else:
-            item_name = item.get("name", "")
-            category = item.get("category", "")
-
-        category_lower = category.lower()
-        name_lower = item_name.lower()
-        type_lower = item.get("type", "").lower() if isinstance(item, dict) else ""
-
-        if "top" in category_lower or "shirt" in name_lower or "t-shirt" in name_lower:
-            tops.append({"name": item_name, "color": item.get("color", ""), "image": item.get("image", "")} if isinstance(item, dict) else item_name)
-
-        elif "bottom" in category_lower or "jeans" in name_lower or "trouser" in name_lower:
-            bottoms.append({"name": item_name, "color": item.get("color", ""), "image": item.get("image", "")} if isinstance(item, dict) else item_name)
-
-        elif "shoe" in category_lower or "sneaker" in name_lower or "boot" in name_lower:
-            shoes.append({"name": item_name, "color": item.get("color", ""), "image": item.get("image", "")} if isinstance(item, dict) else item_name)
-
-        elif "accessor" in category_lower or any(k in category_lower or k in name_lower or k in type_lower for k in ["earring", "necklace", "bracelet", "watch", "sunglass", "bag", "belt", "scarf", "ring"]):
-            accessories.append({
-                "name": item_name,
-                "color": item.get("color", ""),
-                "image": item.get("image", ""),
-                "type": item.get("type", "")
-            } if isinstance(item, dict) else item_name)
-
-    # --------------------------------------------------
-    # BASE OUTFIT
-    # --------------------------------------------------
-
-    outfit = {
-        "top": "White Oversized Shirt",
-        "bottom": "Blue Straight-Leg Jeans",
-        "shoes": "White Sneakers",
-        "accessory": "Minimal Watch"
-    }
-
-    # --------------------------------------------------
-    # OCCASION
-    # --------------------------------------------------
-
-    if occasion == "Formal":
-
+    if wardrobe:
+        rec_result = recommend_from_wardrobe(
+            wardrobe=wardrobe,
+            occasion=occasion,
+            weather=weather,
+            style=style,
+            profile=profile,
+            preferences=preferences
+        )
+        outfit = rec_result["outfit"]
+        styling_advice = rec_result["styling_advice"]
+        outfit_type = rec_result.get("outfit_type", "separates")
+    else:
+        outfit_type = "fallback"
+        styling_advice = "Curated foundational look based on your occasion and style preferences."
+        # Fallback when user has not yet uploaded wardrobe items
         outfit = {
-            "top": "Elegant Blazer",
-            "bottom": "Tailored Trousers",
-            "shoes": "Classic Formal Shoes",
+            "top": "White Oversized Shirt",
+            "bottom": "Blue Straight-Leg Jeans",
+            "dress": None,
+            "shoes": "White Sneakers",
             "accessory": "Minimal Watch"
         }
 
-    elif occasion == "Party":
-
-        outfit = {
-            "top": "Statement Top",
-            "bottom": "Wide-Leg Trousers",
-            "shoes": "Stylish Heels",
-            "accessory": "Statement Earrings"
-        }
-
-    elif occasion == "Wedding":
-
-        outfit = {
-            "top": "Elegant Ethnic Kurta",
-            "bottom": "Straight Pants",
-            "shoes": "Embellished Flats",
-            "accessory": "Elegant Earrings"
-        }
-
-    # --------------------------------------------------
-    # STYLE
-    # --------------------------------------------------
-
-    elif style == "Streetwear":
-
-        outfit = {
-            "top": "Oversized Graphic T-Shirt",
-            "bottom": "Cargo Pants",
-            "shoes": "Chunky Sneakers",
-            "accessory": "Crossbody Bag"
-        }
-
-    elif style == "Elegant":
-
-        outfit = {
-            "top": "Satin Blouse",
-            "bottom": "Tailored Trousers",
-            "shoes": "Pointed-Toe Flats",
-            "accessory": "Delicate Jewelry"
-        }
-
-    elif style == "Traditional":
-
-        outfit = {
-            "top": "Classic Kurta",
-            "bottom": "Straight Pants",
-            "shoes": "Traditional Flats",
-            "accessory": "Ethnic Earrings"
-        }
-
-    elif style == "Minimal":
-
-        outfit = {
-            "top": "Plain Cotton Shirt",
-            "bottom": "Straight-Leg Trousers",
-            "shoes": "Clean White Sneakers",
-            "accessory": "Minimal Watch"
-        }
-
-    elif style == "Trendy":
-
-        outfit = {
-            "top": "Oversized Trendy Shirt",
-            "bottom": "Wide-Leg Jeans",
-            "shoes": "Chunky Sneakers",
-            "accessory": "Layered Necklace"
-        }
-
-    # --------------------------------------------------
-    # WEATHER
-    # --------------------------------------------------
-
-    if weather == "Hot":
-
-        outfit["top"] = "Light Cotton Shirt"
-        outfit["bottom"] = "Relaxed Linen Pants"
-        outfit["shoes"] = "Minimal Sneakers"
-        outfit["accessory"] = "Sunglasses"
-
-    elif weather == "Cold":
-
-        outfit["top"] = "Knit Sweater"
-        outfit["bottom"] = "Straight-Leg Jeans"
-        outfit["shoes"] = "Ankle Boots"
-        outfit["accessory"] = "Warm Scarf"
-
-    elif weather == "Warm":
-
-        if occasion not in ["Formal", "Party", "Wedding"]:
-
-            outfit["top"] = "Light Cotton Overshirt"
-            outfit["bottom"] = "Straight-Leg Jeans"
-            outfit["shoes"] = "White Sneakers"
-            outfit["accessory"] = "Minimal Watch"
-
-    # --------------------------------------------------
-    # USE WARDROBE ITEMS WHEN AVAILABLE
-    # --------------------------------------------------
-
-    if tops:
-        outfit["top"] = tops[0]
-
-    if bottoms:
-        outfit["bottom"] = bottoms[0]
-
-    if shoes:
-        outfit["shoes"] = shoes[0]
-
-    if accessories:
-        occasion_lower = occasion.lower()
-        preferred_acc_types = []
-        if "college" in occasion_lower or "casual" in occasion_lower:
-            preferred_acc_types = ["watch", "sunglass", "bracelet", "bag", "necklace"]
-        elif "party" in occasion_lower:
-            preferred_acc_types = ["earring", "necklace", "bracelet", "bag"]
-        elif "date" in occasion_lower:
-            preferred_acc_types = ["necklace", "earring", "bracelet", "bag"]
-        elif "formal" in occasion_lower or "work" in occasion_lower:
-            preferred_acc_types = ["watch", "earring", "necklace", "bag", "belt"]
-        elif "wedding" in occasion_lower:
-            preferred_acc_types = ["traditional", "ethnic", "earring", "necklace", "bracelet", "ring"]
-
-        selected_acc = accessories[0]
-        for acc in accessories:
-            name_check = acc.get("name", "").lower() if isinstance(acc, dict) else str(acc).lower()
-            type_check = acc.get("type", "").lower() if isinstance(acc, dict) else ""
-            combined = f"{type_check} {name_check}"
-            if any(pt in combined for pt in preferred_acc_types):
-                selected_acc = acc
-                break
-
-        outfit["accessory"] = selected_acc
+        if occasion == "Formal":
+            outfit = {
+                "top": "Elegant Blazer",
+                "bottom": "Tailored Trousers",
+                "dress": None,
+                "shoes": "Classic Formal Shoes",
+                "accessory": "Minimal Watch"
+            }
+        elif occasion == "Party":
+            outfit = {
+                "top": "Statement Top",
+                "bottom": "Wide-Leg Trousers",
+                "dress": None,
+                "shoes": "Stylish Heels",
+                "accessory": "Statement Earrings"
+            }
+        elif occasion == "Wedding":
+            outfit = {
+                "top": None,
+                "bottom": None,
+                "dress": "Satin Evening Dress",
+                "shoes": "Embellished Heels",
+                "accessory": "Elegant Earrings"
+            }
+        elif style == "Streetwear":
+            outfit = {
+                "top": "Oversized Graphic T-Shirt",
+                "bottom": "Cargo Pants",
+                "dress": None,
+                "shoes": "Chunky Sneakers",
+                "accessory": "Crossbody Bag"
+            }
+        elif style == "Traditional":
+            outfit = {
+                "top": "Classic Kurta",
+                "bottom": "Straight Pants",
+                "dress": None,
+                "shoes": "Traditional Flats",
+                "accessory": "Ethnic Earrings"
+            }
 
     # --------------------------------------------------
     # BODY TYPE NOTE
@@ -314,6 +189,8 @@ def recommend_outfit(data: dict):
 
         "success": True,
 
+        "outfit_type": outfit_type,
+
         "request": {
             "occasion": occasion,
             "weather": weather,
@@ -338,7 +215,9 @@ def recommend_outfit(data: dict):
 
             "body_note": body_note,
 
-            "color_note": color_note
+            "color_note": color_note,
+
+            "styling_advice": styling_advice
 
         },
 

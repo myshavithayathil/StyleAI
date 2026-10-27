@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Header from "../components/Header";
 import "./SavedOutfits.css";
 
 function SavedOutfits() {
@@ -31,28 +32,11 @@ function SavedOutfits() {
   return (
     <div className="saved-page">
 
-      {/* NAVBAR */}
-
-      <nav className="saved-navbar">
-
-        <div
-          className="saved-logo"
-          onClick={() => {
-            window.location.href = "/dashboard";
-          }}
-        >
-          STYLE<span>AI</span>
-        </div>
-
-        <button
-          onClick={() => {
-            window.location.href = "/dashboard";
-          }}
-        >
-          ← Dashboard
-        </button>
-
-      </nav>
+      <Header
+        logoRoute="/dashboard"
+        buttonText="← Dashboard"
+        buttonRoute="/dashboard"
+      />
 
 
       {/* HEADER */}
@@ -80,10 +64,6 @@ function SavedOutfits() {
         {savedOutfits.length === 0 ? (
 
           <div className="empty-saved">
-
-            <div className="empty-icon">
-              ♡
-            </div>
 
             <h2>
               No saved outfits yet.
@@ -142,13 +122,13 @@ function SavedOutfits() {
 
                   {outfit.weather && (
                     <span>
-                      🌤️ {outfit.weather}
+                      {outfit.weather}
                     </span>
                   )}
 
                   {outfit.style && (
                     <span>
-                      ✨ {outfit.style}
+                      {outfit.style}
                     </span>
                   )}
 
@@ -212,7 +192,7 @@ function SavedOutfits() {
                 {outfit.top && (
                   <div className="saved-item">
 
-                    <strong>👕 TOP</strong>
+                    <strong>TOP</strong>
 
                     <p>
                       {typeof outfit.top === "string"
@@ -235,7 +215,7 @@ function SavedOutfits() {
                 {outfit.bottom && (
                   <div className="saved-item">
 
-                    <strong>👖 BOTTOM</strong>
+                    <strong>BOTTOM</strong>
 
                     <p>
                       {typeof outfit.bottom === "string"
@@ -258,7 +238,7 @@ function SavedOutfits() {
                 {outfit.dress && (
                   <div className="saved-item">
 
-                    <strong>👗 DRESS</strong>
+                    <strong>DRESS</strong>
 
                     <p>
                       {typeof outfit.dress === "string"
@@ -281,7 +261,7 @@ function SavedOutfits() {
                 {(outfit.footwear || outfit.shoes) && (
                   <div className="saved-item">
 
-                    <strong>👟 FOOTWEAR</strong>
+                    <strong>FOOTWEAR</strong>
 
                     <p>
                       {typeof (outfit.footwear || outfit.shoes) === "string"
@@ -304,7 +284,7 @@ function SavedOutfits() {
                 {outfit.accessory && (
                   <div className="saved-item">
 
-                    <strong>✨ ACCESSORY</strong>
+                    <strong>ACCESSORY</strong>
 
                     <p>
                       {typeof outfit.accessory === "string"

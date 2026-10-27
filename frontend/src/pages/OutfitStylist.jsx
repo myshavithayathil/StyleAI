@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Header from "../components/Header";
 import "./OutfitStylist.css";
 
 function OutfitStylist() {
@@ -72,6 +73,17 @@ function OutfitStylist() {
         JSON.stringify(data)
       );
 
+      // Clear any previously viewed saved outfit to ensure freshly generated look is displayed
+      localStorage.removeItem("selectedSavedOutfit");
+
+      // Also sync generatedWardrobeOutfit
+      if (data && data.outfit) {
+        localStorage.setItem(
+          "generatedWardrobeOutfit",
+          JSON.stringify(data.outfit)
+        );
+      }
+
       // Go to result page
       window.location.href = "/outfit-result";
 
@@ -89,29 +101,11 @@ function OutfitStylist() {
   return (
     <div className="stylist-page">
 
-      {/* NAVBAR */}
-
-      <nav className="stylist-navbar">
-
-        <div
-          className="stylist-logo"
-          onClick={() => {
-            window.location.href = "/dashboard";
-          }}
-        >
-          STYLEAI
-        </div>
-
-        <button
-          className="back-button"
-          onClick={() => {
-            window.location.href = "/dashboard";
-          }}
-        >
-          ← Dashboard
-        </button>
-
-      </nav>
+      <Header
+        logoRoute="/dashboard"
+        buttonText="← Dashboard"
+        buttonRoute="/dashboard"
+      />
 
 
       {/* HEADER */}
@@ -152,7 +146,6 @@ function OutfitStylist() {
               }`}
               onClick={() => setOccasion("College")}
             >
-              <span>🎓</span>
               College
             </button>
 
@@ -162,7 +155,6 @@ function OutfitStylist() {
               }`}
               onClick={() => setOccasion("Casual")}
             >
-              <span>☕</span>
               Casual
             </button>
 
@@ -172,7 +164,6 @@ function OutfitStylist() {
               }`}
               onClick={() => setOccasion("Party")}
             >
-              <span>🎉</span>
               Party
             </button>
 
@@ -182,7 +173,6 @@ function OutfitStylist() {
               }`}
               onClick={() => setOccasion("Date")}
             >
-              <span>❤️</span>
               Date
             </button>
 
@@ -192,7 +182,6 @@ function OutfitStylist() {
               }`}
               onClick={() => setOccasion("Formal")}
             >
-              <span>💼</span>
               Formal
             </button>
 
@@ -202,7 +191,6 @@ function OutfitStylist() {
               }`}
               onClick={() => setOccasion("Wedding")}
             >
-              <span>✨</span>
               Wedding
             </button>
 
@@ -225,7 +213,7 @@ function OutfitStylist() {
               }`}
               onClick={() => setWeather("Hot")}
             >
-              ☀️ Hot
+              Hot
             </button>
 
             <button
@@ -234,7 +222,7 @@ function OutfitStylist() {
               }`}
               onClick={() => setWeather("Warm")}
             >
-              🌤️ Warm
+              Warm
             </button>
 
             <button
@@ -243,7 +231,7 @@ function OutfitStylist() {
               }`}
               onClick={() => setWeather("Cool")}
             >
-              🌥️ Cool
+              Cool
             </button>
 
             <button
@@ -252,7 +240,7 @@ function OutfitStylist() {
               }`}
               onClick={() => setWeather("Cold")}
             >
-              ❄️ Cold
+              Cold
             </button>
 
           </div>

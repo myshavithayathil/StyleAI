@@ -2,6 +2,7 @@
   min-height: 100vh;
   background: #f8f6f2;
   color: #222;
+  font-family: var(--font-sans, "DM Sans", Arial, sans-serif);
 }
 
 /* NAVBAR */

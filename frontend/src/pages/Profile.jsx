@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Header from "../components/Header";
 import "./Profile.css";
 
 function Profile() {
@@ -72,29 +73,11 @@ function Profile() {
 
     <div className="profile-page">
 
-
-      {/* NAVBAR */}
-
-      <nav className="profile-nav">
-
-        <div
-          className="profile-logo"
-          onClick={() => {
-            window.location.href = "/";
-          }}
-        >
-          STYLE<span>AI</span>
-        </div>
-
-        <button
-          onClick={() => {
-            window.location.href = "/";
-          }}
-        >
-          ← Home
-        </button>
-
-      </nav>
+      <Header
+        logoRoute="/"
+        buttonText="← Home"
+        buttonRoute="/"
+      />
 
 
       {/* MAIN */}

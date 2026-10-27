@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Header from "../components/Header";
 import "./Home.css";
 
 function Home() {
@@ -11,7 +12,7 @@ function Home() {
       subtitle: "Enter your profile information and body details.",
       description:
         "STYLEAI builds your unique fashion identity using your height, weight, waist, shoulder measurements, and body silhouette (Hourglass, Pear, Rectangle, Apple, or Inverted Triangle). This ensures every outfit creates a balanced and flattering shape.",
-      icon: "👤",
+      icon: "",
       cta: "Create Your Profile →",
       route: "/profile",
       highlights: [
@@ -28,7 +29,7 @@ function Home() {
       subtitle: "Choose your preferred styles, colors, and fit preferences.",
       description:
         "Tell STYLEAI what aesthetics speak to you—Minimal, Streetwear, Elegant, Trendy, Casual, or Traditional. Choose your preferred silhouette fits and favourite colour palettes to personalize all outfit recommendations.",
-      icon: "🎨",
+      icon: "",
       cta: "Set Your Preferences →",
       route: "/preferences",
       highlights: [
@@ -45,7 +46,7 @@ function Home() {
       subtitle: "Upload and manage your clothes, footwear, and accessories.",
       description:
         "Digitize what you own! Add tops, bottoms, dresses, footwear, and accessories (watches, necklaces, earrings, sunglasses, handbags, belts). Add photos and colours so STYLEAI can curate combinations directly from your closet.",
-      icon: "👕",
+      icon: "",
       cta: "Build Your Wardrobe →",
       route: "/wardrobe",
       highlights: [
@@ -62,7 +63,7 @@ function Home() {
       subtitle: "Curate a complete look using your wardrobe and chosen occasion.",
       description:
         "Pick an occasion—College, Casual Outing, Party, Date, Formal Work, or Wedding. STYLEAI selects coordinating tops, bottoms, shoes, and matching accessories from your wardrobe for a cohesive, balanced outfit.",
-      icon: "✨",
+      icon: "",
       cta: "Generate Your Outfit →",
       route: "/outfit",
       highlights: [
@@ -79,7 +80,7 @@ function Home() {
       subtitle: "Save outfits you love and access them anytime in Saved Looks.",
       description:
         "Keep your favourite STYLEAI creations organized in one place. Every saved look includes item names, colours, photos, and accessories so you can revisit, review, and wear your best outfits anytime.",
-      icon: "♡",
+      icon: "",
       cta: "View Saved Looks →",
       route: "/saved-outfits",
       highlights: [
@@ -94,7 +95,7 @@ function Home() {
 
   const features = [
     {
-      icon: "✨",
+      icon: "",
       title: "Personalized Styling",
       description:
         "Get outfit recommendations based on your preferences, occasion, body silhouette, and wardrobe.",
@@ -102,7 +103,7 @@ function Home() {
       route: "/outfit"
     },
     {
-      icon: "👕",
+      icon: "",
       title: "Digital Wardrobe",
       description:
         "Add, filter, and manage your clothes, footwear, and accessories in your personal digital closet.",
@@ -110,7 +111,7 @@ function Home() {
       route: "/wardrobe"
     },
     {
-      icon: "👤",
+      icon: "",
       title: "Body / Avatar",
       description:
         "Create your style profile and visualize your body measurements, silhouette, and fit details.",
@@ -118,7 +119,7 @@ function Home() {
       route: "/avatar"
     },
     {
-      icon: "♡",
+      icon: "",
       title: "Save Your Looks",
       description:
         "Save outfits you love with item details and accessories to easily access and wear them later.",
@@ -126,7 +127,7 @@ function Home() {
       route: "/saved-outfits"
     },
     {
-      icon: "💍",
+      icon: "",
       title: "Accessory Matching",
       description:
         "STYLEAI selects watches, necklaces, earrings, and bags from your wardrobe to complete each look.",
@@ -134,7 +135,7 @@ function Home() {
       route: "/wardrobe"
     },
     {
-      icon: "🎯",
+      icon: "",
       title: "Occasion-Based Outfits",
       description:
         "Generate outfits for college, casual outings, parties, dates, formal occasions, and weddings.",
@@ -145,20 +146,7 @@ function Home() {
 
   return (
     <div className="home">
-      {/* NAVBAR */}
-      <nav className="navbar">
-        <div className="logo" onClick={() => (window.location.href = "/")}>
-          STYLE<span>AI</span>
-        </div>
-
-        <div className="nav-links">
-          <a href="#how">How It Works</a>
-          <a href="#features">Features</a>
-          <button onClick={() => (window.location.href = "/dashboard")}>
-            Dashboard
-          </button>
-        </div>
-      </nav>
+      <Header variant="home" logoRoute="/" sticky={true} />
 
       {/* HERO */}
       <main className="hero">
@@ -168,7 +156,7 @@ function Home() {
           <h1>
             Dress for the
             <br />
-            <span>you you want to be.</span>
+            <span>you, you want to be.</span>
           </h1>
 
           <p className="description">
@@ -188,13 +176,13 @@ function Home() {
               className="start-button-secondary"
               onClick={() => (window.location.href = "/outfit")}
             >
-              Generate Outfit ✨
+              Generate Outfit
             </button>
           </div>
         </div>
 
         <div className="hero-card">
-          <div className="fashion-circle">✦</div>
+          <div className="fashion-circle"></div>
 
           <div className="style-card">
             <p>AI STYLE MATCH</p>
@@ -227,7 +215,7 @@ function Home() {
               onClick={() => setActiveStep(index)}
             >
               <span className="step-tab-number">{item.number}</span>
-              <span className="step-tab-icon">{item.icon}</span>
+              {item.icon && <span className="step-tab-icon">{item.icon}</span>}
               <span className="step-tab-title">{item.title}</span>
             </button>
           ))}
@@ -253,7 +241,7 @@ function Home() {
             <div className="step-highlights">
               {steps[activeStep].highlights.map((highlight, idx) => (
                 <div key={idx} className="highlight-item">
-                  <span className="highlight-bullet">✓</span>
+                  <span className="highlight-bullet">•</span>
                   <span>{highlight}</span>
                 </div>
               ))}
@@ -287,7 +275,9 @@ function Home() {
               <span className="visual-badge">
                 {steps[activeStep].previewBadge}
               </span>
-              <div className="visual-icon">{steps[activeStep].icon}</div>
+              {steps[activeStep].icon && (
+                <div className="visual-icon">{steps[activeStep].icon}</div>
+              )}
               <h4>{steps[activeStep].title}</h4>
               <ul className="visual-items">
                 {steps[activeStep].previewItems.map((item, idx) => (
@@ -327,7 +317,7 @@ function Home() {
               key={idx}
               onClick={() => (window.location.href = feature.route)}
             >
-              <div className="feature-icon">{feature.icon}</div>
+              {feature.icon && <div className="feature-icon">{feature.icon}</div>}
               <h3>{feature.title}</h3>
               <p>{feature.description}</p>
               <button
